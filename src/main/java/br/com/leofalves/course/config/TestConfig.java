@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import br.com.leofalves.course.entities.Category;
 import br.com.leofalves.course.entities.Order;
 import br.com.leofalves.course.entities.OrderItem;
+import br.com.leofalves.course.entities.Payment;
 import br.com.leofalves.course.entities.Product;
 import br.com.leofalves.course.entities.User;
 import br.com.leofalves.course.entities.enums.OrderStatus;
@@ -81,6 +82,11 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
+		Payment pay = new Payment(null, Instant.now(), o3);
+		o3.setPayment(pay);
+		
+		orderRepository.save(o3);
 		
 	}
 
